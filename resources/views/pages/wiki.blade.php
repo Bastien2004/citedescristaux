@@ -300,9 +300,9 @@
                         <h3>Le Bingo — vendredi 11</h3>
                         <p>
                             L'event final de la semaine, et le plus important :
-                            <strong>tous les points sont en jeu</strong>. Une équipe en retard peut
-                            encore tout renverser, une équipe en tête peut tout perdre. C'est
-                            le moment décisif de la Cité des Cristaux.
+                            Il vaut plus de point que les autres évents.
+                            Une équipe en retard peut encore tout renverser, une équipe en tête peut tout perdre.
+                            C'est le moment décisif de la Cité des Cristaux.
                         </p>
                     </section>
 
