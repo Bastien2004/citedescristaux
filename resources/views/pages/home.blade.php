@@ -71,7 +71,7 @@
                 <span class="kicker kicker--center">01 — Le concept</span>
                 <h2>Trois moteurs,<br>toute la semaine</h2>
                 <p class="lead">
-                    Une Cité Minecraft en équipes de {{ $event['teamSize'] }} joueurs, pendant une
+                    Une cité spéciale Alpha en équipes de {{ $event['teamSize'] }} joueurs, pendant une
                     semaine complète. Tout ce que vous faites rapporte des points.
                 </p>
             </div>
@@ -110,9 +110,9 @@
                         avant la fermeture.
                     </p>
                     <ul class="checklist">
-                        <li><span class="bullet"></span><span><strong>Un chef d'équipe</strong> — porte-parole du groupe, il reçoit l'item du home base au début de l'event.</span></li>
-                        <li><span class="bullet"></span><span><strong>Une home base</strong> — définie par le chef, c'est le QG de l'équipe pour toute la semaine.</span></li>
-                        <li><span class="bullet"></span><span><strong>Un groupe dédié</strong> — CTAG / HTAG par équipe, avec un tchat privé pour se coordonner.</span></li>
+                        <li><span class="bullet"></span><span><strong>Un chef d'équipe</strong> — porte-parole du groupe.</span></li>
+                        <li><span class="bullet"></span><span><strong>Un home base</strong> — définie par le chef, c'est le QG de l'équipe pour toute la semaine.</span></li>
+                        <li><span class="bullet"></span><span><strong>Un groupe dédié</strong> — un tchat privé pour se coordonner.</span></li>
                     </ul>
                     <div class="row mt-32">
                         <a href="{{ url('/inscription') }}" class="btn btn--primary">Monter mon équipe</a>
@@ -148,8 +148,7 @@
                 <span class="kicker kicker--center">03 — Le planning</span>
                 <h2>Neuf jours,<br><span class="glow">neuf temps forts</span></h2>
                 <p class="lead">
-                    Deux cérémonies en live, deux ouvertures de mondes, un Bingo final et
-                    deux events gardés secrets jusqu'au dernier moment.
+                    Cérémonie d'ouverture et fermeture en live, Event exclusif clôturés par le Bingo
                 </p>
             </div>
 
@@ -189,14 +188,11 @@
                         Au-dessus<br>de la <span class="glow">brume</span>
                     </h2>
                     <p class="lead mt-24">
-                        Une Capitale en hauteur, accessible en dépensant des points. C'est
-                        le cœur social et compétitif de la Cité : on y monte pour jouer, pour
-                        se montrer, et pour bâtir.
+                        Une Capitale en hauteur, c'est le cœur social et compétitif de la Cité : on y monte pour jouer, pour se montrer, et pour bâtir.
                     </p>
                     <ul class="checklist">
                         <li><span class="bullet"></span><span>Des parkours à répéter pour grappiller des points</span></li>
                         <li><span class="bullet"></span><span>Une chasse aux têtes ouverte en permanence</span></li>
-                        <li><span class="bullet"></span><span><strong>Votre bâtiment d'équipe</strong> — à acheter, puis à améliorer toute la semaine pour marquer votre territoire</span></li>
                     </ul>
                 </div>
 
@@ -224,11 +220,7 @@
                 </p>
             </div>
 
-            <div class="chips reveal" style="justify-content:center;margin-top:34px">
-                @foreach($shopCategories as $c)
-                    <span class="chip">{{ $c }}</span>
-                @endforeach
-            </div>
+
 
             <div class="grid-3 mt-48">
                 <?php
@@ -255,12 +247,13 @@
                 <div class="reveal">
                     <span class="kicker">06 — La monnaie</span>
                     <h2 class="display" style="font-size:clamp(30px, 4.4vw, 52px);margin:18px 0 0">
-                        L'<span class="glow-gold">Alpha</span> Coin
+                        Les <span class="glow-gold">Cristaux</span>
                     </h2>
                     <p class="lead mt-24">
-                        La monnaie de la Cité. Déposez vos coins en banque pour transformer
-                        votre farm en points, ou dépensez-les pour vous équiper — poudre
-                        d'os, machines, améliorations de bâtiment.
+                        La monnaie de la Cité. Déposez vos cristaux en
+                        banque pour transformer votre farm en points,
+                        ou dépensez-les pour vous équiper — poudre d'os,
+                        machines et plus encore !
                     </p>
                     <div class="note note--gold">
                         <p><strong>Stratégie :</strong> rien ne vous oblige à déposer au fur et

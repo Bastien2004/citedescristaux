@@ -76,7 +76,7 @@ return [
             'date' => '12 sept.', 'weekday' => 'Samedi', 'time' => 'Diffusion live',
             'badge' => 'Live', 'live' => true, 'gold' => false, 'mystery' => false,
             'title' => 'Cérémonie de clôture', 'watermark' => 'CLÔTURE',
-            'description' => 'Récap de la semaine et best-of de la Cité. Les scores sont annoncés le lendemain.',
+            'description' => 'Récap de la semaine. Les scores sont annoncés le lendemain.',
         ],
         [
             'date' => '13 sept.', 'weekday' => 'Dimanche', 'time' => 'Le verdict',
@@ -105,7 +105,7 @@ return [
 
     'stats' => [
         ['value' => '9', 'label' => "jours d'event"],
-        ['value' => '6+2', 'label' => 'joueurs par équipe'],
+        ['value' => '6', 'label' => 'joueurs par équipe'],
         ['value' => '5', 'label' => 'catégories de shop'],
         ['value' => '1', 'label' => 'équipe gagnante'],
     ],
