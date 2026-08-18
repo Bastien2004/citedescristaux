@@ -39,24 +39,11 @@ class ReglementController extends Controller
                 ],
             ],
             [
-                'title' => 'Triche et logiciels tiers',
-                'rules' => [
-                    "Tout client modifié apportant un avantage compétitif est interdit : X-ray, fly, kill aura, auto-clicker, macro, radar, minimap révélant les entités ou les minerais.",
-                    "Les ressource packs de type X-ray ou rendant les blocs transparents sont assimilés à de la triche.",
-                    "L'exploitation volontaire d'un bug du serveur (duplication d'items, passage hors zone, contournement d'une limite) est interdite. Tout bug découvert doit être signalé au staff.",
-                    "Les macros et scripts d'automatisation de farm sont interdits, y compris pendant les périodes creuses.",
-                    "Le staff peut demander un screenshare à tout moment. Un refus est traité comme un aveu de triche.",
-                    "La triche d'un seul joueur engage toute son équipe.",
-                ],
-            ],
-            [
                 'title' => 'Jeu, constructions et territoires',
                 'rules' => [
                     "La home base de chaque équipe est définie par son chef en début d'event à l'aide de l'item prévu à cet effet.",
                     "Le griefing des constructions d'une autre équipe est interdit, sauf mention explicite du contraire dans le cadre d'un event.",
-                    "Le vol dans les coffres d'une autre équipe est interdit en dehors des events qui l'autorisent explicitement.",
-                    "Le PvP est autorisé uniquement dans le cadre des events qui le prévoient. Le PvP sauvage en dehors de ces moments est sanctionné.",
-                    "Les constructions des zones communes (Capitale, ONU, spawn) ne doivent pas être dégradées.",
+                    "Le vol dans les coffres d'une autre équipe est autorisé en dehors des events qui l'interdisent explicitement.",
                     "Le multi-compte est interdit : un joueur, un compte, une équipe.",
                 ],
             ],
@@ -64,10 +51,11 @@ class ReglementController extends Controller
                 'title' => 'Économie, shop et points',
                 'rules' => [
                     "Le shop se réinitialise chaque jour à minuit. Les prix et items affichés à un instant T font foi.",
-                    "Les Alpha Coins ne comptent dans le score de l'équipe qu'une fois déposés en banque.",
-                    "Les échanges de coins ou d'items entre équipes différentes sont interdits : chaque équipe joue avec ce qu'elle produit.",
+                    "Les Cristaux ne comptent dans le score de l'équipe qu'une fois déposés en banque.",
+                    "Les échanges de cristaux ou d'items entre équipes différentes sont autorisé : chaque équipe joue avec ce qu'elle produit.",
                     "Toute manipulation visant à fausser l'économie (entente entre équipes, transferts déguisés) entraîne une annulation des points concernés.",
                     "Le barème détaillé de points est présenté à la cérémonie d'ouverture et fait référence en cas de litige.",
+                    "oute base d'équipe doit se situer sous le sol où à la surface. Il est interdit de faire une base en hauteur dans le style \"sky base\"",
                 ],
             ],
             [
