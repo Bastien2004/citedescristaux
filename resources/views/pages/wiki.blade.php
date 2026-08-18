@@ -347,8 +347,7 @@
                         <h3>Où voir mon score ?</h3>
                         <p>
                             Sur la page <a href="{{ url('/classement') }}" style="color:var(--red-2)">classement</a>,
-                            mise à jour par le staff au fil de la semaine, ainsi qu'aux
-                            points d'étape à l'ONU.
+                            mise à jour par le staff au fil de la semaine et directement en jeu, ainsi qu'aux points d'étape à l'ONU.
                         </p>
 
                         <div class="note">
