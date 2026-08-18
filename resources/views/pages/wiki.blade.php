@@ -237,8 +237,7 @@
                                 <tbody>
                                     <tr>
                                         <td style="color:var(--ink);white-space:nowrap">Dépôts en banque</td>
-                                        <td>Les Alpha Coins déposés sont convertis en points. C'est
-                                            la source principale et la plus régulière.</td>
+                                        <td>Les Cristaux déposés sont convertis en points. C'est la source principale et la plus régulière.</td>
                                     </tr>
                                     <tr>
                                         <td style="color:var(--ink);white-space:nowrap">Events du soir</td>
@@ -252,25 +251,17 @@
                                     </tr>
                                     <tr>
                                         <td style="color:var(--ink);white-space:nowrap">Le Bingo final</td>
-                                        <td>L'event du vendredi 11, où tous les points sont en jeu. Il
-                                            peut renverser le classement.</td>
+                                        <td>L'event du vendredi 11, vaut plus de points que les autres events. Il peut renverser le classement.</td>
                                     </tr>
                                 </tbody>
                             </table>
                         </div>
 
-                        <p>
-                            Les points dépensés (accès à la Capitale, bâtiment d'équipe,
-                            améliorations) sont <strong>déduits de votre score</strong>. Chaque
-                            achat est donc un pari sur le fait qu'il vous en rapportera plus
-                            qu'il ne vous en coûte.
-                        </p>
-
                         <h3>Le suivi du classement</h3>
                         <p>
-                            Un point d'étape est fait <strong>à l'ONU</strong> le
-                            dimanche 6 septembre au soir. Les scores finaux sont annoncés le
-                            dimanche 13 septembre, également à l'ONU.
+                            Le classement est disponible en permanence dans la cité.
+                            Un point d'étape est fait à l'ONU le dimanche 6 septembre au soir.
+                            Les scores finaux sont annoncés le dimanche 13 septembre, également à l'ONU.
                         </p>
                     </section>
 
