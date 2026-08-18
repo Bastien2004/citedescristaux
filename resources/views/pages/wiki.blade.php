@@ -30,11 +30,9 @@
                             ans d'existence.
                         </p>
                         <p>
-                            Le principe est simple : des équipes de {{ $event['teamSize'] }} joueurs
-                            s'installent dans une Cité Minecraft et ont une semaine pour
-                            accumuler un maximum de points. Tout ce que vous faites compte —
-                            farmer, vendre, participer aux events du soir, relever des défis,
-                            construire.
+                            Le principe est simple : des équipes de 6 joueurs s'installent dans une Cité
+                            au sein du Alpha et ont une semaine pour accumuler un maximum de points.
+                            Tout ce que vous faites compte — farmer, vendre, participer aux events du soir, relever des défis, construire.
                         </p>
 
                         <h3>Ce qui rend la Cité différente</h3>
@@ -95,9 +93,8 @@
 
                         <h3>Le tchat d'équipe</h3>
                         <p>
-                            Chaque équipe dispose d'un <strong>groupe dédié (CTAG / HTAG)</strong>
-                            avec un tchat privé en jeu. Il vous permet de vous coordonner sans que
-                            les autres équipes puissent lire vos échanges.
+                            Chaque équipe dispose d'un tchat privé en jeu.
+                            Il vous permet de vous coordonner sans que les autres équipes puissent lire vos échanges.
                         </p>
 
                         <div class="note">
@@ -146,10 +143,9 @@
                             le planning de la semaine — puis la Cité ouvre dans la foulée.
                         </p>
                         <p>
-                            La <strong>cérémonie de clôture</strong> (samedi 12 septembre) revient
-                            sur la semaine avec un best-of de la Cité. Les scores finaux ne sont
-                            pas annoncés ce soir-là : ils tombent le lendemain, dimanche 13, lors
-                            de l'annonce officielle à l'ONU.
+                            La <strong>cérémonie de clôture</strong> (samedi 12 septembre) sera un récapitulatif de la semaine de farm.
+                            Les scores finaux ne sont pas annoncés ce soir-là :
+                            ils tombent le lendemain, dimanche 13, lors de l'annonce officielle à l'ONU.
                         </p>
                     </section>
 
@@ -157,37 +153,13 @@
                     <section class="wiki__section" id="capitale">
                         <span class="kicker">Section 04</span>
                         <h2 class="mt-16">La Capitale</h2>
-                        <p>
-                            La Capitale est une ville construite en hauteur, au-dessus de la
-                            brume. Elle n'est pas accessible gratuitement :
-                            <strong>il faut dépenser des points pour y monter</strong>. C'est
-                            un choix stratégique, puisque ces points ne comptent plus pour votre
-                            score.
-                        </p>
-
                         <h3>Ce qu'on y trouve</h3>
                         <ul>
-                            <li><strong>Des parkours</strong> — répétables, ils rapportent des
-                                points à chaque réussite.</li>
-                            <li><strong>Une chasse aux têtes</strong> — des têtes sont cachées dans
-                                la ville, à retrouver et à ramener.</li>
+                            <li>Des parkours — répétables, ils rapportent des cristaux à chaque réussite.
+                                Une chasse aux têtes — des têtes sont cachées dans la ville en échange de cristaux </li>
                             <li><strong>Des défis à découvrir sur place</strong> — tout n'est
                                 pas annoncé à l'avance, il faut explorer.</li>
                         </ul>
-
-                        <h3>Le bâtiment d'équipe</h3>
-                        <p>
-                            Chaque équipe peut acheter un bâtiment dans la Capitale, puis
-                            l'améliorer au fil de la semaine. C'est un investissement :
-                            il coûte des points, mais il marque votre territoire et débloque des
-                            avantages au fil des améliorations.
-                        </p>
-
-                        <div class="note">
-                            <p>Monter à la Capitale coûte des points, mais les défis qu'on y
-                            trouve en rapportent. À vous de juger quand le déplacement est
-                            rentable.</p>
-                        </div>
                     </section>
 
                     {{-- ---------------- SHOP ---------------- --}}
@@ -195,8 +167,8 @@
                         <span class="kicker">Section 05</span>
                         <h2 class="mt-16">Le shop</h2>
                         <p>
-                            Le shop est le cœur de l'économie de la Cité. C'est là que
-                            vous vendez votre farm contre des Alpha Coins.
+                            Le shop est le cœur de l'économie de la Cité.
+                            C'est là que vous vendez votre farm contre des Cristaux.
                         </p>
 
                         <h3>Le reset de minuit</h3>
@@ -205,19 +177,6 @@
                             réinitialisés : de nouveaux items apparaissent, et les prix changent.
                             Ce qui rapportait gros hier peut ne plus rien valoir aujourd'hui.
                         </p>
-                        <p>
-                            En revanche, <strong>les catégories ne changent jamais</strong>. Vous
-                            savez toujours où chercher :
-                        </p>
-                        <ul>
-                            @foreach($shopCategories as $c)
-                                <li>
-                                    <strong>{{ $c }}</strong>
-                                    @if($c === 'Nether') — débloqué le mardi 8 septembre @endif
-                                    @if($c === 'Lune') — débloqué le jeudi 10 septembre @endif
-                                </li>
-                            @endforeach
-                        </ul>
 
                         <h3>Comment optimiser</h3>
                         <p>Trois variables à croiser en permanence pour savoir quoi farmer :</p>
@@ -239,31 +198,27 @@
                     {{-- ---------------- MONNAIE ---------------- --}}
                     <section class="wiki__section" id="monnaie">
                         <span class="kicker">Section 06</span>
-                        <h2 class="mt-16">L'Alpha Coin</h2>
+                        <h2 class="mt-16">Les Cristaux</h2>
                         <p>
-                            L'Alpha Coin est la monnaie de la Cité. Vous en gagnez en vendant
-                            au shop, et vous pouvez en faire deux choses :
+                            Les Cristaux sont la monnaie de la Cité. Vous en gagnez en vendant au shop, et vous pouvez en faire deux choses :
                         </p>
                         <ul>
                             <li><strong>Les déposer en banque</strong> — ils sont alors convertis en
                                 points pour votre équipe. C'est ce qui fait monter votre score.</li>
-                            <li><strong>Les dépenser</strong> — poudre d'os, machines, accès à
-                                la Capitale, bâtiment d'équipe et améliorations. Tout ce qui
-                                vous rend plus efficace pour la suite.</li>
+                            <li>Les dépenser — poudre d'os, machines et plus encore. Tout ce qui vous rend plus efficace pour la suite.</li>
                         </ul>
 
                         <h3>La stratégie du dépôt</h3>
                         <p>
-                            Rien ne vous oblige à déposer vos coins au fur et à mesure. Certaines
-                            équipes préfèrent tout stocker et ne déposer qu'en toute fin
-                            d'event, pour masquer leur score réel jusqu'au bout et éviter
-                            d'attirer l'attention.
+                            Rien ne vous oblige à déposer vos cristaux au fur et à mesure.
+                            Certaines équipes préfèrent tout stocker et ne déposer qu'en toute fin d'event,
+                            pour masquer leur score réel jusqu'au bout et éviter d'attirer l'attention.
                         </p>
 
                         <div class="note note--gold">
-                            <p><strong>Attention :</strong> tant que vos coins ne sont pas déposés,
-                            ils ne comptent pas dans votre score. Garder tout sous le coude est
-                            un pari — assurez-vous de ne pas rater la fenêtre de dépôt.</p>
+                            <p>Attention : tant que vos cristaux ne sont pas déposés,
+                                ils ne comptent pas dans votre score.
+                                Garder tout sous le coude est un pari — assurez-vous de ne pas rater la fenêtre de dépôt.</p>
                         </div>
                     </section>
 
@@ -317,12 +272,6 @@
                             dimanche 6 septembre au soir. Les scores finaux sont annoncés le
                             dimanche 13 septembre, également à l'ONU.
                         </p>
-
-                        <div class="note">
-                            <p>Le détail chiffré du barème (nombre de points par event, par défi et
-                            par palier de dépôt) est communiqué lors de la cérémonie
-                            d'ouverture.</p>
-                        </div>
                     </section>
 
                     {{-- ---------------- EVENTS ---------------- --}}
