@@ -13,7 +13,7 @@ class TeamMember extends Model
     public $timestamps = false;
 
     protected $fillable = [
-        'id', 'team_id', 'discord_tag', 'role', 'position', 'is_captain',
+        'id', 'team_id', 'discord_id', 'discord_tag', 'role', 'position', 'is_captain',
     ];
 
     protected $casts = [

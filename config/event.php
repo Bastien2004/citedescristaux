@@ -21,7 +21,7 @@ return [
         'datesShort' => '5 au 13 septembre',
         'logo' => '',
         'discordInvite' => '',
-        'registrationOpen' => '2026-08-26T18:00:00+02:00',
+        'registrationOpen' => '2025-08-26T18:00:00+02:00',
         'registrationClose' => '2026-09-04T23:59:00+02:00',
         'openingLive' => '2026-09-05T20:45:00+02:00',
         'teamSize' => 6,

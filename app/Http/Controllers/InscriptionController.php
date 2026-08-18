@@ -82,42 +82,66 @@ class InscriptionController extends Controller
             $fieldErrors['teamName'] = "Le nom d'équipe contient des caractères non autorisés.";
         }
 
+        $idRegex = '/^\d{17,20}$/';
         $tagRegex = '/^[a-zA-Z0-9._-]{2,32}(#\d{4})?$/';
         $cleanTag = fn ($value) => ltrim(trim((string) $value), '@');
 
-        // --- Titulaires ---
+        // Le capitaine (vous) compte comme le 1er titulaire — connu via Discord, pas besoin de le ressaisir.
+        $captainCount = 1;
+        $remainingTitulaires = $event['teamSize'] - $captainCount;
+
+        // --- Titulaires additionnels (5 par défaut) ---
         $titulaires = [];
-        for ($i = 0; $i < $event['teamSize']; $i++) {
-            $tag = $cleanTag($request->input("player{$i}"));
-            if (! $tag) {
-                $fieldErrors["player{$i}"] = 'Champ obligatoire.';
-            } elseif (! preg_match($tagRegex, $tag)) {
-                $fieldErrors["player{$i}"] = 'Pseudo Discord invalide.';
+        for ($i = 0; $i < $remainingTitulaires; $i++) {
+            $id = trim((string) $request->input("playerId{$i}"));
+            $tag = $cleanTag($request->input("playerTag{$i}"));
+
+            if (! $id) {
+                $fieldErrors["playerId{$i}"] = 'Champ obligatoire.';
+            } elseif (! preg_match($idRegex, $id)) {
+                $fieldErrors["playerId{$i}"] = "Identifiant Discord invalide (17 à 20 chiffres, clic droit sur le pseudo → « Copier l'identifiant »).";
             }
-            $titulaires[] = $tag;
+
+            if (! $tag) {
+                $fieldErrors["playerTag{$i}"] = 'Champ obligatoire.';
+            } elseif (! preg_match($tagRegex, $tag)) {
+                $fieldErrors["playerTag{$i}"] = 'Pseudo Discord invalide.';
+            }
+
+            $titulaires[] = ['id' => $id, 'tag' => $tag];
         }
 
         // --- Remplaçants (facultatifs) ---
         $remplacants = [];
         for ($i = 0; $i < $event['substitutes']; $i++) {
-            $tag = $cleanTag($request->input("sub{$i}"));
-            if ($tag && ! preg_match($tagRegex, $tag)) {
-                $fieldErrors["sub{$i}"] = 'Pseudo Discord invalide.';
+            $id = trim((string) $request->input("subId{$i}"));
+            $tag = $cleanTag($request->input("subTag{$i}"));
+
+            // Facultatif : seulement validé si au moins un des deux champs est rempli.
+            if ($id || $tag) {
+                if (! preg_match($idRegex, $id)) {
+                    $fieldErrors["subId{$i}"] = "Identifiant Discord invalide (17 à 20 chiffres).";
+                }
+                if (! preg_match($tagRegex, $tag)) {
+                    $fieldErrors["subTag{$i}"] = 'Pseudo Discord invalide.';
+                }
             }
-            $remplacants[] = $tag;
+
+            if ($id && $tag) {
+                $remplacants[] = ['id' => $id, 'tag' => $tag];
+            }
         }
 
-        // --- Doublons ---
-        $all = collect(array_merge($titulaires, $remplacants))
-            ->filter()
-            ->map(fn ($t) => mb_strtolower($t));
+        // --- Doublons (sur l'ID Discord, capitaine inclus) ---
+        $allIds = collect(array_merge([$user['id']], array_column($titulaires, 'id'), array_column($remplacants, 'id')))
+            ->filter();
 
-        $dupes = $all->duplicates()->unique()->values();
+        $dupeIds = $allIds->duplicates()->unique()->values();
 
-        if ($dupes->isNotEmpty()) {
+        if ($dupeIds->isNotEmpty()) {
             return back()
                 ->with('inscription_field_errors', $fieldErrors)
-                ->with('inscription_error', 'Un même joueur est renseigné plusieurs fois : ' . $dupes->implode(', ') . '.')
+                ->with('inscription_error', 'Un même joueur (même identifiant Discord) est renseigné plusieurs fois, ou correspond à vous-même.')
                 ->with('inscription_old', $request->all());
         }
 
@@ -154,20 +178,32 @@ class InscriptionController extends Controller
                     'captain_avatar' => $user['avatar'] ?? null,
                 ]);
 
-                foreach ($titulaires as $i => $tag) {
+                // Le capitaine est automatiquement le 1er titulaire.
+                TeamMember::create([
+                    'team_id' => $team->id,
+                    'discord_id' => $user['id'],
+                    'discord_tag' => DiscordSession::displayName($user),
+                    'role' => 'TITULAIRE',
+                    'position' => 1,
+                    'is_captain' => true,
+                ]);
+
+                foreach ($titulaires as $i => $p) {
                     TeamMember::create([
                         'team_id' => $team->id,
-                        'discord_tag' => $tag,
+                        'discord_id' => $p['id'],
+                        'discord_tag' => $p['tag'],
                         'role' => 'TITULAIRE',
-                        'position' => $i + 1,
-                        'is_captain' => $i === 0,
+                        'position' => $i + 2, // +2 car le capitaine occupe déjà la position 1
+                        'is_captain' => false,
                     ]);
                 }
 
-                foreach (array_values(array_filter($remplacants)) as $i => $tag) {
+                foreach ($remplacants as $i => $p) {
                     TeamMember::create([
                         'team_id' => $team->id,
-                        'discord_tag' => $tag,
+                        'discord_id' => $p['id'],
+                        'discord_tag' => $p['tag'],
                         'role' => 'REMPLACANT',
                         'position' => $i + 1,
                         'is_captain' => false,
