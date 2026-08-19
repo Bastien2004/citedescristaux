@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Admin;
 use App\Models\Team;
+use App\Models\TeamMember;
 use App\Support\AdminAccess;
 use App\Support\DiscordSession;
 use Illuminate\Http\Request;
@@ -143,6 +144,67 @@ class AdminController extends Controller
         $team->delete();
 
         return back();
+    }
+
+    /* --------------------------- Édition des équipes --------------------------- */
+
+    public function updateMember(Team $team, TeamMember $member, Request $request)
+    {
+        $this->requireAdmin();
+
+        if ($member->team_id !== $team->id) {
+            abort(404);
+        }
+
+        $id = trim((string) $request->input('discordId', ''));
+        $tag = ltrim(trim((string) $request->input('discordTag', '')), '@');
+
+        $idRegex = '/^\d{17,20}$/';
+        $tagRegex = '/^[a-zA-Z0-9._-]{2,32}(#\d{4})?$/';
+
+        if (! preg_match($idRegex, $id)) {
+            return back()->with('admin_error', "Identifiant Discord invalide pour ce membre (17 à 20 chiffres).");
+        }
+
+        if (! preg_match($tagRegex, $tag)) {
+            return back()->with('admin_error', 'Pseudo Discord invalide pour ce membre.');
+        }
+
+        $member->update([
+            'discord_id' => $id,
+            'discord_tag' => $tag,
+        ]);
+
+        // Si on modifie le capitaine, on garde team.captain_tag cohérent (affiché ailleurs sur le site).
+        if ($member->is_captain) {
+            $team->update(['captain_tag' => $tag]);
+        }
+
+        return back()->with('admin_ok', 'Membre mis à jour.');
+    }
+
+    public function updateTeamName(Team $team, Request $request)
+    {
+        $this->requireAdmin();
+
+        $name = trim((string) $request->input('name', ''));
+        $name = preg_replace('/\s+/', ' ', $name);
+
+        if (mb_strlen($name) < 3 || mb_strlen($name) > 32) {
+            return back()->with('admin_error', "Le nom d'équipe doit faire entre 3 et 32 caractères.");
+        }
+
+        if (! preg_match('/^[\p{L}\p{N} \'&_.-]+$/u', $name)) {
+            return back()->with('admin_error', "Le nom d'équipe contient des caractères non autorisés.");
+        }
+
+        if (Team::whereRaw('lower(name) = lower(?)', [$name])->where('id', '!=', $team->id)->exists()) {
+            return back()->with('admin_error', "Ce nom d'équipe est déjà pris par une autre équipe.");
+        }
+
+        $team->update(['name' => $name]);
+
+        return back()->with('admin_ok', "Nom de l'équipe mis à jour.");
     }
 
     /* ---------------------------- Administrateurs ---------------------------- */

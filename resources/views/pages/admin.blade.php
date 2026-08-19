@@ -90,8 +90,12 @@
                                 <div class="admin-card">
                                     <div class="row" style="justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:12px">
                                         <div>
-                                            <h3 style="margin:0">{{ $team->name }}</h3>
-                                            <p class="text-sm text-dim" style="margin:4px 0 0">
+                                            <form method="POST" action="{{ route('admin.teams.name', $team) }}" class="row" style="gap:8px;align-items:center">
+                                                @csrf
+                                                <input type="text" name="name" value="{{ $team->name }}" class="input-sm" style="font-weight:600;font-size:18px;color:var(--ink);background:transparent;border:1px solid rgba(255,255,255,.12);border-radius:8px;padding:4px 10px">
+                                                <button type="submit" class="btn btn--ghost btn--sm">Renommer</button>
+                                            </form>
+                                            <p class="text-sm text-dim" style="margin:8px 0 0">
                                                 Chef : {{ $team->captain_tag }} · inscrite le {{ $team->created_at->locale('fr')->isoFormat('D MMM YYYY à HH:mm') }}
                                             </p>
                                         </div>
@@ -107,9 +111,9 @@
                                         </div>
                                     </div>
 
-                                    <div class="admin-card__members mt-16">
+                                    <div class="admin-card__members mt-16" style="display:flex;flex-direction:column;gap:8px">
                                         @foreach($team->members as $m)
-                                            <span class="chip">{{ $m->discord_tag }}{{ $m->role === 'REMPLACANT' ? ' (rempl.)' : '' }}</span>
+                                            @include('partials.admin-member-edit', ['team' => $team, 'member' => $m])
                                         @endforeach
                                     </div>
                                 </div>
@@ -117,7 +121,7 @@
                         </div>
                     @endif
 
-                {{-- ---------------- ÉQUIPES ---------------- --}}
+                    {{-- ---------------- ÉQUIPES ---------------- --}}
                 @elseif($tab === 'equipes')
                     @if($validated->isEmpty())
                         <div class="empty reveal">
@@ -130,8 +134,12 @@
                                 <div class="admin-card">
                                     <div class="row" style="justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:12px">
                                         <div>
-                                            <h3 style="margin:0">{{ $team->name }}</h3>
-                                            <p class="text-sm text-dim" style="margin:4px 0 0">Chef : {{ $team->captain_tag }}</p>
+                                            <form method="POST" action="{{ route('admin.teams.name', $team) }}" class="row" style="gap:8px;align-items:center">
+                                                @csrf
+                                                <input type="text" name="name" value="{{ $team->name }}" class="input-sm" style="font-weight:600;font-size:18px;color:var(--ink);background:transparent;border:1px solid rgba(255,255,255,.12);border-radius:8px;padding:4px 10px">
+                                                <button type="submit" class="btn btn--ghost btn--sm">Renommer</button>
+                                            </form>
+                                            <p class="text-sm text-dim" style="margin:8px 0 0">Chef : {{ $team->captain_tag }}</p>
                                         </div>
 
                                         <div class="row" style="gap:8px;align-items:center;flex-wrap:wrap">
@@ -155,9 +163,9 @@
                                         </div>
                                     </div>
 
-                                    <div class="admin-card__members mt-16">
+                                    <div class="admin-card__members mt-16" style="display:flex;flex-direction:column;gap:8px">
                                         @foreach($team->members as $m)
-                                            <span class="chip">{{ $m->discord_tag }}{{ $m->role === 'REMPLACANT' ? ' (rempl.)' : '' }}</span>
+                                            @include('partials.admin-member-edit', ['team' => $team, 'member' => $m])
                                         @endforeach
                                     </div>
                                 </div>
@@ -190,7 +198,7 @@
                         </div>
                     @endif
 
-                {{-- ---------------- ADMINS ---------------- --}}
+                    {{-- ---------------- ADMINS ---------------- --}}
                 @elseif($tab === 'admins')
                     <h3 style="font-size:15px;text-transform:uppercase;letter-spacing:.08em;color:var(--dim)">
                         Propriétaires (via .env, non modifiables)
