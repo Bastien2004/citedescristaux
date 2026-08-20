@@ -1750,10 +1750,17 @@ details.roster > summary:hover { color: var(--ink); }
 }
 
 .coin--image {
-    background-image: var(--coin-img);
-    background-size: cover;
-    background-position: center;
-    font-size: 0;
+    background: none;
+    border: none;
+    box-shadow: none;
+    padding: 0;
+}
+
+.coin--image img.coin__img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    image-rendering: pixelated;
 }
 
 .empty p { color: var(--muted); max-width: 46ch; margin: 0 auto; }
