@@ -36,7 +36,14 @@
 
         <div class="footer__bottom">
             <span>Organisé par {{ $event['organizer'] }}.</span>
-            <span>{{ $event['name'] }} — {{ $event['datesLabel'] }}</span>
+            <span>
+                Organisé par {{ $event['organizer'] }}. Site réalisé par
+                <a href="https://guideonbot.guideon.dev/" target="_blank" rel="noreferrer" style="color:#5865f2;text-decoration:underline;display:inline-flex;align-items:center;gap:6px;vertical-align:middle">
+                    <img src="{{ asset('images/GuideOn.png') }}" alt="" style="width:16px;height:16px;border-radius:4px;object-fit:cover;vertical-align:middle">
+                    GuideOn
+                </a>
+                et <span style="color:var(--red-2)">MateRubix18</span>.
+            </span>
         </div>
     </div>
 </footer>
