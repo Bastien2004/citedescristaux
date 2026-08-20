@@ -26,7 +26,7 @@ return [
         'openingLive' => '2026-09-05T20:45:00+02:00',
         'teamSize' => 6,
         'substitutes' => 2,
-        'capitaleImage' => '',
+        'capitaleImage' => 'build.png',
     ],
 
     'planning' => [
