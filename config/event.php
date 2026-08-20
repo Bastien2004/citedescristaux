@@ -27,6 +27,7 @@ return [
         'teamSize' => 6,
         'substitutes' => 2,
         'capitaleImage' => '/images/build.png',
+        'coinImage' => '/images/monnaie.png',
     ],
 
     'planning' => [

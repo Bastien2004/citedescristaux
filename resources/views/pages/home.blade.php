@@ -263,7 +263,11 @@
                 </div>
 
                 <div class="split__visual reveal" data-delay="120">
-                    <div class="coin">A</div>
+                    @if($event['coinImage'] ?? false)
+                        <div class="coin coin--image" style="--coin-img:url('{{ asset($event['coinImage']) }}')"></div>
+                    @else
+                        <div class="coin">A</div>
+                    @endif
                 </div>
             </div>
         </div>

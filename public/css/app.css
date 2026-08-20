@@ -1749,6 +1749,13 @@ details.roster > summary:hover { color: var(--ink); }
   margin: 0 0 10px;
 }
 
+.coin--image {
+    background-image: var(--coin-img);
+    background-size: cover;
+    background-position: center;
+    font-size: 0;
+}
+
 .empty p { color: var(--muted); max-width: 46ch; margin: 0 auto; }
 
 /* -------------------------------------------------------------------------
