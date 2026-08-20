@@ -9,18 +9,27 @@
 
     <section class="section">
         <div class="container">
-            <div class="reglement">
-                @foreach($articles as $i => $article)
-                    <article class="reglement__article">
-                        <div class="reglement__num">{{ str_pad($i + 1, 2, '0', STR_PAD_LEFT) }}</div>
-                        <h2>{{ $article['title'] }}</h2>
-                        <ol>
-                            @foreach($article['rules'] as $rule)
-                                <li>{{ $rule }}</li>
-                            @endforeach
-                        </ol>
-                    </article>
-                @endforeach
+            <div class="wiki">
+                {{-- Sommaire --}}
+                <nav class="wiki__nav" aria-label="Sommaire du règlement">
+                    @foreach($articles as $article)
+                        <a href="#{{ \Illuminate\Support\Str::slug($article['title']) }}">{{ $article['title'] }}</a>
+                    @endforeach
+                </nav>
+
+                <div class="wiki__body">
+                    @foreach($articles as $i => $article)
+                        <section class="wiki__section" id="{{ \Illuminate\Support\Str::slug($article['title']) }}">
+                            <span class="kicker">Article {{ str_pad($i + 1, 2, '0', STR_PAD_LEFT) }}</span>
+                            <h2 class="mt-16">{{ $article['title'] }}</h2>
+                            <ol>
+                                @foreach($article['rules'] as $rule)
+                                    <li>{{ $rule }}</li>
+                                @endforeach
+                            </ol>
+                        </section>
+                    @endforeach
+                </div>
             </div>
 
             <div class="note note--gold mt-48">
