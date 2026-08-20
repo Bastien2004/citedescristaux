@@ -264,7 +264,9 @@
 
                 <div class="split__visual reveal" data-delay="120">
                     @if($event['coinImage'] ?? false)
-                        <div class="coin coin--image" style="--coin-img:url('{{ asset($event['coinImage']) }}')"></div>
+                        <div class="coin coin--image">
+                            <img src="{{ asset($event['coinImage']) }}" alt="" class="coin__img">
+                        </div>
                     @else
                         <div class="coin">A</div>
                     @endif
