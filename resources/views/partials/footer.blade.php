@@ -37,7 +37,7 @@
         <div class="footer__bottom">
             <span>Organisé par {{ $event['organizer'] }}.</span>
             <span>
-                Organisé par {{ $event['organizer'] }}. Site réalisé par
+                Site réalisé par
                 <a href="https://guideonbot.guideon.dev/" target="_blank" rel="noreferrer" style="color:#5865f2;text-decoration:underline;display:inline-flex;align-items:center;gap:6px;vertical-align:middle">
                     <img src="{{ asset('images/GuideOn.png') }}" alt="" style="width:16px;height:16px;border-radius:4px;object-fit:cover;vertical-align:middle">
                     GuideOn
