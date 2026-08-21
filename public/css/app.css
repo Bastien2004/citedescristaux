@@ -1267,6 +1267,91 @@ img {
 
 .slot { display: flex; align-items: center; gap: 13px; }
 
+/* -------------------------------------------------------------------------
+   Champs compacts (formulaires inline : panel admin, filtres...)
+   ------------------------------------------------------------------------- */
+
+.input-sm {
+    padding: 10px 13px;
+    border-radius: 4px;
+    background: rgba(255, 255, 255, 0.035);
+    border: 1px solid var(--line-strong);
+    color: var(--ink);
+    font-family: var(--font-body);
+    font-size: 14px;
+    transition: border-color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+}
+
+.input-sm::placeholder { color: var(--dim); }
+
+.input-sm:focus {
+    outline: none;
+    border-color: var(--red);
+    background: rgba(245, 49, 79, 0.05);
+    box-shadow: 0 0 0 3px rgba(245, 49, 79, 0.12);
+}
+
+/* Message d'erreur sous un champ de formulaire */
+.field__error {
+    margin: 2px 0 0;
+    font-size: 12.5px;
+    color: var(--red-2);
+}
+
+/* Paire de champs (ID + pseudo) côte à côte — formulaire d'inscription */
+.field-pair {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin-top: 16px;
+}
+
+@media (max-width: 560px) {
+    .field-pair { grid-template-columns: 1fr; gap: 10px; }
+}
+
+/* Ligne d'édition d'un membre dans le panel admin */
+.member-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    background: rgba(255, 255, 255, 0.025);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    padding: 10px 14px;
+}
+
+.member-row__role {
+    font-family: var(--font-label);
+    font-weight: 700;
+    font-size: 10.5px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--dim);
+    min-width: 92px;
+    flex-shrink: 0;
+}
+
+.member-row .input-sm:nth-of-type(1) { flex: 1.1; min-width: 160px; }
+.member-row .input-sm:nth-of-type(2) { flex: 1; min-width: 140px; }
+
+/* Formulaire de renommage d'équipe (panel admin) */
+.rename-form {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.rename-form .input-sm {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 17px;
+    color: var(--ink-bright);
+    min-width: 200px;
+}
+
 .slot__num {
   width: 40px;
   height: 40px;

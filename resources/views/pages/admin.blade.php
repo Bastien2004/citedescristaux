@@ -90,9 +90,9 @@
                                 <div class="admin-card">
                                     <div class="row" style="justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:12px">
                                         <div>
-                                            <form method="POST" action="{{ route('admin.teams.name', $team) }}" class="row" style="gap:8px;align-items:center">
+                                            <form method="POST" action="{{ route('admin.teams.name', $team) }}" class="rename-form">
                                                 @csrf
-                                                <input type="text" name="name" value="{{ $team->name }}" class="input-sm" style="font-weight:600;font-size:18px;color:var(--ink);background:transparent;border:1px solid rgba(255,255,255,.12);border-radius:8px;padding:4px 10px">
+                                                <input type="text" name="name" value="{{ $team->name }}" class="input-sm rename-form__input" style="font-family:var(--font-display);font-weight:700;font-size:17px;color:var(--ink-bright);min-width:200px">
                                                 <button type="submit" class="btn btn--ghost btn--sm">Renommer</button>
                                             </form>
                                             <p class="text-sm text-dim" style="margin:8px 0 0">
@@ -134,9 +134,9 @@
                                 <div class="admin-card">
                                     <div class="row" style="justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:12px">
                                         <div>
-                                            <form method="POST" action="{{ route('admin.teams.name', $team) }}" class="row" style="gap:8px;align-items:center">
+                                            <form method="POST" action="{{ route('admin.teams.name', $team) }}" class="rename-form">
                                                 @csrf
-                                                <input type="text" name="name" value="{{ $team->name }}" class="input-sm" style="font-weight:600;font-size:18px;color:var(--ink);background:transparent;border:1px solid rgba(255,255,255,.12);border-radius:8px;padding:4px 10px">
+                                                <input type="text" name="name" value="{{ $team->name }}" class="input-sm rename-form__input" style="font-family:var(--font-display);font-weight:700;font-size:17px;color:var(--ink-bright);min-width:200px">
                                                 <button type="submit" class="btn btn--ghost btn--sm">Renommer</button>
                                             </form>
                                             <p class="text-sm text-dim" style="margin:8px 0 0">Chef : {{ $team->captain_tag }}</p>
@@ -145,7 +145,7 @@
                                         <div class="row" style="gap:8px;align-items:center;flex-wrap:wrap">
                                             <form method="POST" action="{{ route('admin.teams.points', $team) }}" class="row" style="gap:6px">
                                                 @csrf
-                                                <input type="number" name="points" value="{{ $team->points }}" style="width:100px" class="input-sm">
+                                                <input type="number" name="points" value="{{ $team->points }}" style="width:100px;text-align:center;font-weight:700" class="input-sm">
                                                 <button type="submit" class="btn btn--ghost btn--sm">Mettre à jour</button>
                                             </form>
 
@@ -243,11 +243,11 @@
                                 @csrf
                                 <div class="field">
                                     <label for="discordId">Identifiant Discord</label>
-                                    <input type="text" id="discordId" name="discordId" required placeholder="123456789012345678">
+                                    <input type="text" id="discordId" name="discordId" required placeholder="123456789012345678" class="input">
                                 </div>
                                 <div class="field">
                                     <label for="label">Nom (facultatif)</label>
-                                    <input type="text" id="label" name="label" placeholder="Pseudo affiché">
+                                    <input type="text" id="label" name="label" placeholder="Pseudo affiché" class="input">
                                 </div>
                                 <button type="submit" class="btn btn--primary mt-16">Ajouter</button>
                             </form>

@@ -35,7 +35,7 @@
             <label for="teamName">Nom de l'équipe</label>
             <input type="text" id="teamName" name="teamName" minlength="3" maxlength="32" required
                    value="{{ $oldInput['teamName'] ?? '' }}"
-                   placeholder="Ex. Les Gardiens du Cristal">
+                   placeholder="Ex. Les Gardiens du Cristal" class="input">
             @if(!empty($fieldErrors['teamName']))
                 <p class="field__error">{{ $fieldErrors['teamName'] }}</p>
             @endif
@@ -46,12 +46,12 @@
         </h3>
 
         @for($i = 0; $i < $event['teamSize'] - 1; $i++)
-            <div class="field-pair" style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+            <div class="field-pair">
                 <div class="field">
                     <label for="playerId{{ $i }}">Joueur {{ $i + 2 }} — ID Discord</label>
                     <input type="text" id="playerId{{ $i }}" name="playerId{{ $i }}" required
                            value="{{ $oldInput['playerId' . $i] ?? '' }}"
-                           placeholder="123456789012345678" inputmode="numeric">
+                           placeholder="123456789012345678" inputmode="numeric" class="input">
                     @if(!empty($fieldErrors['playerId' . $i]))
                         <p class="field__error">{{ $fieldErrors['playerId' . $i] }}</p>
                     @endif
@@ -60,7 +60,7 @@
                     <label for="playerTag{{ $i }}">Joueur {{ $i + 2 }} — Pseudo</label>
                     <input type="text" id="playerTag{{ $i }}" name="playerTag{{ $i }}" required
                            value="{{ $oldInput['playerTag' . $i] ?? '' }}"
-                           placeholder="pseudo_discord">
+                           placeholder="pseudo_discord" class="input">
                     @if(!empty($fieldErrors['playerTag' . $i]))
                         <p class="field__error">{{ $fieldErrors['playerTag' . $i] }}</p>
                     @endif
@@ -73,12 +73,12 @@
         </h3>
 
         @for($i = 0; $i < $event['substitutes']; $i++)
-            <div class="field-pair" style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+            <div class="field-pair">
                 <div class="field">
                     <label for="subId{{ $i }}">Remplaçant {{ $i + 1 }} — ID Discord</label>
                     <input type="text" id="subId{{ $i }}" name="subId{{ $i }}"
                            value="{{ $oldInput['subId' . $i] ?? '' }}"
-                           placeholder="123456789012345678 (optionnel)" inputmode="numeric">
+                           placeholder="123456789012345678 (optionnel)" inputmode="numeric" class="input">
                     @if(!empty($fieldErrors['subId' . $i]))
                         <p class="field__error">{{ $fieldErrors['subId' . $i] }}</p>
                     @endif
@@ -87,7 +87,7 @@
                     <label for="subTag{{ $i }}">Remplaçant {{ $i + 1 }} — Pseudo</label>
                     <input type="text" id="subTag{{ $i }}" name="subTag{{ $i }}"
                            value="{{ $oldInput['subTag' . $i] ?? '' }}"
-                           placeholder="pseudo_discord (optionnel)">
+                           placeholder="pseudo_discord (optionnel)" class="input">
                     @if(!empty($fieldErrors['subTag' . $i]))
                         <p class="field__error">{{ $fieldErrors['subTag' . $i] }}</p>
                     @endif
