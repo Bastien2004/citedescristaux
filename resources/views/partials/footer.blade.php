@@ -30,7 +30,7 @@
                 <a href="{{ url('/wiki#equipes') }}">Les équipes</a>
                 <a href="{{ url('/wiki#planning') }}">Le planning</a>
                 <a href="{{ url('/wiki#shop') }}">Le shop</a>
-                <a href="{{ url('/wiki#monnaie') }}">L'Alpha Coin</a>
+                <a href="{{ url('/wiki#monnaie') }}">Les Cristaux</a>
             </div>
         </div>
 
