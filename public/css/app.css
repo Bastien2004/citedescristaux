@@ -1380,6 +1380,88 @@ img {
     color: var(--dim);
 }
 
+/* Carte numérotée pour chaque joueur du formulaire d'inscription */
+.player-slot {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    padding: 18px;
+    border-radius: 8px;
+    background: linear-gradient(180deg, var(--bg-2), var(--bg-1));
+    border: 1px solid var(--line);
+    margin-top: 14px;
+    transition: border-color 0.2s ease;
+}
+
+.player-slot:focus-within {
+    border-color: rgba(245, 49, 79, 0.4);
+}
+
+.player-slot--sub {
+    border-style: dashed;
+    background: rgba(255, 255, 255, 0.015);
+}
+
+.player-slot__label {
+    font-family: var(--font-label);
+    font-weight: 700;
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--dim);
+    margin-bottom: 10px;
+}
+
+.player-slot__fields {
+    flex: 1;
+    min-width: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+@media (max-width: 560px) {
+    .player-slot__fields { grid-template-columns: 1fr; }
+}
+
+.player-slot__fields .field label {
+    font-size: 10px;
+}
+
+.player-num {
+    width: 40px;
+    height: 40px;
+    flex-shrink: 0;
+    border-radius: 4px;
+    display: grid;
+    place-items: center;
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: 15px;
+    background: var(--red-wash);
+    border: 1px solid rgba(245, 49, 79, 0.32);
+    color: var(--red-2);
+}
+
+.player-num--sub {
+    background: rgba(255, 255, 255, 0.04);
+    border-color: var(--line-strong);
+    border-style: dashed;
+    color: var(--dim);
+}
+
+/* Ligne de champs + bouton pour l'édition d'un membre (panel admin) */
+.member-fields {
+    display: grid;
+    grid-template-columns: 1fr 1fr auto;
+    gap: 10px;
+    align-items: center;
+}
+
+@media (max-width: 560px) {
+    .member-fields { grid-template-columns: 1fr; }
+}
+
 /* Ligne d'édition d'un membre dans le panel admin */
 .member-row {
     display: flex;
