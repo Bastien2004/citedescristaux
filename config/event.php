@@ -19,7 +19,7 @@ return [
         'tagline' => 'Une semaine. Une Cité. Une seule équipe gagnante.',
         'datesLabel' => 'Du 5 au 13 septembre 2026',
         'datesShort' => '5 au 13 septembre',
-        'logo' => '',
+        'logo' => '/images/logoAlpha.png',
         'discordInvite' => '',
         'registrationOpen' => '2025-08-26T18:00:00+02:00',
         'registrationClose' => '2026-09-04T23:59:00+02:00',
