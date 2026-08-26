@@ -42,7 +42,7 @@ class ReglementController extends Controller
                 'title' => 'Jeu, constructions et territoires',
                 'rules' => [
                     "La home base de chaque équipe est définie par son chef en début d'event à l'aide de l'item prévu à cet effet.",
-                    "Le griefing des constructions d'une autre équipe est interdit, sauf mention explicite du contraire dans le cadre d'un event.",
+                    "Le griefing des constructions d'une autre équipe est autorisé, sauf mention explicite du contraire dans le cadre d'un event.",
                     "Le vol dans les coffres d'une autre équipe est autorisé en dehors des events qui l'interdisent explicitement.",
                     "Le multi-compte est interdit : un joueur, un compte, une équipe.",
                 ],
@@ -55,7 +55,7 @@ class ReglementController extends Controller
                     "Les échanges de cristaux ou d'items entre équipes différentes sont autorisé : chaque équipe joue avec ce qu'elle produit.",
                     "Toute manipulation visant à fausser l'économie (entente entre équipes, transferts déguisés) entraîne une annulation des points concernés.",
                     "Le barème détaillé de points est présenté à la cérémonie d'ouverture et fait référence en cas de litige.",
-                    "oute base d'équipe doit se situer sous le sol où à la surface. Il est interdit de faire une base en hauteur dans le style \"sky base\"",
+                    "Toute base d'équipe doit se situer sous le sol où à la surface. Il est interdit de faire une base en hauteur dans le style \"sky base\"",
                 ],
             ],
             [
