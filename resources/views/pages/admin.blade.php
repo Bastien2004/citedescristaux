@@ -115,6 +115,18 @@
                                         @foreach($team->members as $m)
                                             @include('partials.admin-member-edit', ['team' => $team, 'member' => $m])
                                         @endforeach
+
+                                        {{-- Ajouter un membre --}}
+                                        <form method="POST" action="{{ route('admin.teams.members.add', $team) }}" class="row" style="gap:8px;align-items:center;flex-wrap:wrap;margin-top:8px">
+                                            @csrf
+                                            <select name="role" class="input-sm" style="width:130px">
+                                                <option value="TITULAIRE">Titulaire</option>
+                                                <option value="REMPLACANT">Remplaçant</option>
+                                            </select>
+                                            <input type="text" name="discordId" placeholder="ID Discord" required class="input-sm" style="flex:1;min-width:160px">
+                                            <input type="text" name="discordTag" placeholder="Pseudo Discord" required class="input-sm" style="flex:1;min-width:140px">
+                                            <button type="submit" class="btn btn--ghost btn--sm">+ Ajouter</button>
+                                        </form>
                                     </div>
                                 </div>
                             @endforeach
@@ -189,6 +201,18 @@
                                         @foreach($team->members as $m)
                                             @include('partials.admin-member-edit', ['team' => $team, 'member' => $m])
                                         @endforeach
+
+                                        {{-- Ajouter un membre --}}
+                                        <form method="POST" action="{{ route('admin.teams.members.add', $team) }}" class="row" style="gap:8px;align-items:center;flex-wrap:wrap;margin-top:8px">
+                                            @csrf
+                                            <select name="role" class="input-sm" style="width:130px">
+                                                <option value="TITULAIRE">Titulaire</option>
+                                                <option value="REMPLACANT">Remplaçant</option>
+                                            </select>
+                                            <input type="text" name="discordId" placeholder="ID Discord" required class="input-sm" style="flex:1;min-width:160px">
+                                            <input type="text" name="discordTag" placeholder="Pseudo Discord" required class="input-sm" style="flex:1;min-width:140px">
+                                            <button type="submit" class="btn btn--ghost btn--sm">+ Ajouter</button>
+                                        </form>
                                     </div>
                                 </div>
                             @endforeach

@@ -213,6 +213,80 @@ class AdminController extends Controller
         }
     }
 
+    public function addMember(Team $team, Request $request)
+    {
+        $this->requireAdmin();
+
+        $event = config('event.event');
+
+        $id = trim((string) $request->input('discordId', ''));
+        $tag = ltrim(trim((string) $request->input('discordTag', '')), '@');
+        $role = $request->input('role') === 'REMPLACANT' ? 'REMPLACANT' : 'TITULAIRE';
+
+        $idRegex = '/^\d{17,20}$/';
+        $tagRegex = '/^[a-zA-Z0-9._-]{2,32}(#\d{4})?$/';
+
+        if (! preg_match($idRegex, $id)) {
+            return back()->with('admin_error', "Identifiant Discord invalide (17 à 20 chiffres).");
+        }
+
+        if (! preg_match($tagRegex, $tag)) {
+            return back()->with('admin_error', 'Pseudo Discord invalide.');
+        }
+
+        // Pas de doublon d'ID, y compris avec le capitaine et les autres membres de l'équipe.
+        if ($team->members()->where('discord_id', $id)->exists()) {
+            return back()->with('admin_error', 'Ce joueur fait déjà partie de cette équipe.');
+        }
+
+        $currentTitulaires = $team->members()->where('role', 'TITULAIRE')->count();
+        $currentRemplacants = $team->members()->where('role', 'REMPLACANT')->count();
+
+        if ($role === 'TITULAIRE' && $currentTitulaires >= $event['teamSize']) {
+            return back()->with('admin_error', "L'équipe a déjà le nombre maximum de titulaires ({$event['teamSize']}).");
+        }
+
+        if ($role === 'REMPLACANT' && $currentRemplacants >= $event['substitutes']) {
+            return back()->with('admin_error', "L'équipe a déjà le nombre maximum de remplaçants ({$event['substitutes']}).");
+        }
+
+        $position = ($role === 'TITULAIRE' ? $currentTitulaires : $currentRemplacants) + 1;
+
+        try {
+            TeamMember::create([
+                'team_id' => $team->id,
+                'discord_id' => $id,
+                'discord_tag' => $tag,
+                'role' => $role,
+                'position' => $position,
+                'is_captain' => false,
+            ]);
+
+            return back()->with('admin_ok', 'Membre ajouté.');
+        } catch (\Throwable $e) {
+            report($e);
+
+            return back()->with('admin_error', "Impossible d'ajouter ce membre.");
+        }
+    }
+
+    public function deleteMember(Team $team, TeamMember $member)
+    {
+        $this->requireAdmin();
+
+        if ($member->team_id !== $team->id) {
+            abort(404);
+        }
+
+        if ($member->is_captain) {
+            return back()->with('admin_error', "Impossible de supprimer le capitaine. Supprimez l'équipe entière si besoin.");
+        }
+
+        $member->delete();
+
+        return back()->with('admin_ok', 'Membre retiré de l\'équipe.');
+    }
+
     /* --------------------------- Édition des équipes --------------------------- */
 
     public function updateMember(Team $team, TeamMember $member, Request $request)
