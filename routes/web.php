@@ -55,6 +55,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::post('/teams/{team}/points', [AdminController::class, 'setPoints'])->name('teams.points');
     Route::post('/teams/{team}/delete', [AdminController::class, 'deleteTeam'])->name('teams.delete');
 
+    Route::post('/teams', [AdminController::class, 'createTeam'])->name('teams.create');
+
     Route::post('/admins', [AdminController::class, 'addAdmin'])->name('admins.add');
     Route::post('/admins/remove', [AdminController::class, 'removeAdmin'])->name('admins.remove');
 

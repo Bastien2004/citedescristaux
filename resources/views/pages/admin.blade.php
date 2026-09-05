@@ -123,6 +123,28 @@
 
                     {{-- ---------------- ÉQUIPES ---------------- --}}
                 @elseif($tab === 'equipes')
+
+                    {{-- Création manuelle d'une équipe --}}
+                    <div class="auth-card mb-32" style="max-width:480px">
+                        <h3 style="margin-top:0">Créer une équipe manuellement</h3>
+                        <form method="POST" action="{{ route('admin.teams.create') }}" class="form mt-16">
+                            @csrf
+                            <div class="field">
+                                <label for="name">Nom d'équipe</label>
+                                <input type="text" id="name" name="name" required minlength="3" maxlength="32" class="input" value="{{ old('name') }}">
+                            </div>
+                            <div class="field">
+                                <label for="captainId">Identifiant Discord du capitaine</label>
+                                <input type="text" id="captainId" name="captainId" required placeholder="123456789012345678" class="input" value="{{ old('captainId') }}">
+                            </div>
+                            <div class="field">
+                                <label for="captainTag">Pseudo Discord du capitaine</label>
+                                <input type="text" id="captainTag" name="captainTag" required placeholder="pseudo ou pseudo#1234" class="input" value="{{ old('captainTag') }}">
+                            </div>
+                            <button type="submit" class="btn btn--primary mt-16">Créer</button>
+                        </form>
+                    </div>
+
                     @if($validated->isEmpty())
                         <div class="empty reveal">
                             <h3>Aucune équipe validée</h3>

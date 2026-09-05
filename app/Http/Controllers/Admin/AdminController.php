@@ -9,6 +9,7 @@ use App\Models\TeamMember;
 use App\Support\AdminAccess;
 use App\Support\DiscordSession;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 
@@ -144,6 +145,72 @@ class AdminController extends Controller
         $team->delete();
 
         return back();
+    }
+
+    public function createTeam(Request $request)
+    {
+        $this->requireAdmin();
+
+        $name = trim((string) $request->input('name', ''));
+        $name = preg_replace('/\s+/', ' ', $name);
+
+        $captainId = trim((string) $request->input('captainId', ''));
+        $captainTag = ltrim(trim((string) $request->input('captainTag', '')), '@');
+
+        $idRegex = '/^\d{17,20}$/';
+        $tagRegex = '/^[a-zA-Z0-9._-]{2,32}(#\d{4})?$/';
+
+        if (mb_strlen($name) < 3 || mb_strlen($name) > 32) {
+            return back()->with('admin_error', "Le nom d'équipe doit faire entre 3 et 32 caractères.");
+        }
+
+        if (! preg_match('/^[\p{L}\p{N} \'&_.-]+$/u', $name)) {
+            return back()->with('admin_error', "Le nom d'équipe contient des caractères non autorisés.");
+        }
+
+        if (! preg_match($idRegex, $captainId)) {
+            return back()->with('admin_error', "Identifiant Discord du capitaine invalide (17 à 20 chiffres).");
+        }
+
+        if (! $captainTag || ! preg_match($tagRegex, $captainTag)) {
+            return back()->with('admin_error', 'Pseudo Discord du capitaine invalide.');
+        }
+
+        if (Team::whereRaw('lower(name) = lower(?)', [$name])->exists()) {
+            return back()->with('admin_error', "Ce nom d'équipe est déjà pris.");
+        }
+
+        if (Team::where('captain_id', $captainId)->exists()) {
+            return back()->with('admin_error', 'Ce joueur est déjà capitaine d\'une autre équipe.');
+        }
+
+        try {
+            DB::transaction(function () use ($name, $captainId, $captainTag) {
+                $team = Team::create([
+                    'id' => (string) Str::uuid(),
+                    'name' => $name,
+                    'captain_id' => $captainId,
+                    'captain_tag' => $captainTag,
+                    'captain_avatar' => null,
+                    'status' => 'VALIDATED',
+                ]);
+
+                TeamMember::create([
+                    'team_id' => $team->id,
+                    'discord_id' => $captainId,
+                    'discord_tag' => $captainTag,
+                    'role' => 'TITULAIRE',
+                    'position' => 1,
+                    'is_captain' => true,
+                ]);
+            });
+
+            return back()->with('admin_ok', "Équipe « {$name} » créée. Ajoute les autres membres depuis sa fiche.");
+        } catch (\Throwable $e) {
+            report($e);
+
+            return back()->with('admin_error', "Une erreur est survenue lors de la création de l'équipe.");
+        }
     }
 
     /* --------------------------- Édition des équipes --------------------------- */
